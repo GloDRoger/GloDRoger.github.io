@@ -1,21 +1,30 @@
-<script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <div class="app">
+    <h1>This is a Bio project</h1>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<script>
+export default {
+
+}
+</script>
+
+<style lang='scss'>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.app{
+  width: 100%;
+  height: 100vh;
+  background:linear-gradient(60deg,rgb(71, 179, 241),rgb(163, 124, 240));
+  padding-top: 400px;
+  h1{
+    color: #fff;
+    text-align: center;
+    font-size: 50px;
+  }
 }
 </style>
