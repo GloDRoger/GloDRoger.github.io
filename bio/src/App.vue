@@ -1,12 +1,14 @@
 <template>
   <div class="app">
     <h1>This is a Bio project</h1>
+
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-
+  
 }
 </script>
 
