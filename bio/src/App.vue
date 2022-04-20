@@ -1,8 +1,6 @@
 <template>
   <div class="app">
     <h1>This is a Bio project</h1>
-    <div>{{a}}</div>
-    <button @click="a++">+</button>
   </div>
 </template>
 
@@ -10,8 +8,11 @@
 export default {
   data(){
     return{
-      a:1
     }
+  },
+  created(){
+  },
+  methods:{
   },
 }
 </script>
