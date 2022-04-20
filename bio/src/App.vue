@@ -1,14 +1,18 @@
 <template>
   <div class="app">
     <h1>This is a Bio project</h1>
-
+    <div>{{a}}</div>
+    <button @click="a++">+</button>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
-  
+  data(){
+    return{
+      a:1
+    }
+  },
 }
 </script>
 
@@ -22,11 +26,12 @@ export default {
   width: 100%;
   height: 100vh;
   background:linear-gradient(60deg,rgb(71, 179, 241),rgb(163, 124, 240));
-  padding-top: 400px;
+  padding-top: 20%;
   h1{
     color: #fff;
     text-align: center;
-    font-size: 50px;
+    font-size: 25px;
   }
+
 }
 </style>
