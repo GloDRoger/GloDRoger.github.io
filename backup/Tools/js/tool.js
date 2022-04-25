@@ -158,6 +158,14 @@ class tool {
             document.getElementById('loading_g') ? document.getElementById('loading_g').remove() : ''
         }
     }
+    LoginPopup(data) {
+        /* 登录弹窗 */
+        let Login = vm.extend(login)
+        let element = new Login({ i18n, router }).$mount()
+        if (!document.getElementById('login_popup')) {
+            document.body.appendChild(element.$el)
+        }
+    }
     Instructions() {
         /* 自定义指令 */
         vm.directive('background', {
