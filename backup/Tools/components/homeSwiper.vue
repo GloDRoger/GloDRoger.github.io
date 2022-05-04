@@ -4,7 +4,7 @@
 
   <div class="swiper-container gallery-top">
     <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="(data, index) in option" :key="index">
+        <div style="cursor: pointer" @click="onSwiperClick(data.path)" class="swiper-slide" v-for="(data, index) in option" :key="index">
           <div class="top_img">
             <img :src="data.thumb" alt="" />
           </div>
@@ -29,10 +29,11 @@
       <li 
         class="thumb" 
         v-for="(item,index) in thumbsData" 
-        :key="item.id + index"
+        :key="item.id * Math.random()"
         @click="swichBanner(index)"
         :class="activeTb === index ? 'activeTb' : '' "
       >
+        <div class="mask"></div>
         <img :src="item.thumb" alt="">
         <span>{{item.title}}</span>
       </li>
@@ -181,17 +182,20 @@ export default {
             
             //根据大图换页
             const thumbs = document.getElementsByClassName('thumbs')[0]
-            const h = 516 //每页高度
+            const h = 26.875 //每页高度
             let page ,move
             page = Math.ceil((this.realIndex + 1) / 4) - 1 //第几页
             move = page * h //移动总距离
-            thumbs.style.transform = `translateY(-${move}px)`
+            if(thumbs){
+              thumbs.style.transform = `translateY(-${move}rem)`
+            }
+            
 
             if(this.realIndex === 0 && this.previousIndex === _this.option.length){
               //由最后一张切换至第一张
               page = Math.ceil((this.previousIndex + 1) / 4) - 1 //previousIndex第一个值是1，加1正好是复制出来的最后一页
               move = page * h
-              thumbs.style.transform = `translateY(-${move}px)`
+              thumbs.style.transform = `translateY(-${move}rem)`
               setTimeout(()=>{ //过渡动画完之后再取消过度动画并切换回第一页
                 thumbs.style.transition = 'all ease-out 0s'
                 thumbs.style.transform = `translateY(0px)`
@@ -208,8 +212,25 @@ export default {
    }
   },
   swichBanner(index){
-    this.galleryTop.slideTo(index+1,500,false)
+    if(index < this.thumbsData.length - 4){
+      this.galleryTop.slideTo(index+1,500,false)
+    }else{
+      //复制出来的最后4个对应前面4个
+      const target = index - this.thumbsData.length + 5
+      this.galleryTop.slideTo(target,500,false)
+    }
   },
+  onSwiperClick(href) {
+    console.log('href',href)
+    // 打开轮播图链接
+    if (href != "0") {
+      if (href.includes("http")) {
+        window.open(href);
+      } else {
+        this.$router.push(href);
+      }
+    }
+  }
  },
 }
 </script>
@@ -217,7 +238,9 @@ export default {
 <style lang="scss" scoped>
 #lunbotu {
  height: 100%;
- width: 100%;
+ width: 93.54%;
+ max-width: 1796px;
+ margin: 0 auto;
  display: flex;
  .line_box {
   height: 100%;
@@ -266,27 +289,46 @@ export default {
  .thumbs_box{
    flex-grow: 1;
    max-width: 425px;
-   height: 500px;
-   overflow: hidden;
+   height: 26.04166rem;
+   overflow: scroll;
  }
  .thumbs{
    transition: all ease-out 0.3s;
    .thumb{
-      height:102px;
+      height:5.3125rem;
       background-color:#fff;
       border-radius:10px;
       display: flex;
       align-items: center;
       cursor: pointer;
-      box-shadow:0px 2px 10px #d2dfea;
       box-sizing: border-box;
-      border:2px solid; 
-      border-color:#fff;
-      margin-bottom: 27.3px;
+      margin-bottom:1.421875rem;
+      position: relative;
+      box-shadow:0px 2px 10px #d2dfea;
+      .mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        box-sizing: border-box;
+        border-radius:10px;
+        border: 2px solid;
+        border-color:#3e96fc;
+        box-shadow:0px 1px 16px #3d95fb inset;
+        display: none;
+        animation: show_mask .65s ease forwards;
+      }
+      @keyframes show_mask {
+        from{
+          opacity: 0;
+        }
+        to{
+          opacity: 1;
+        }
+      }
      img{
-       width: auto;
-       height: 102px;
-       border-radius:8px;
+       width: 65%;
+       height: 5.3125rem;
+       border-radius:10px;
        margin-right: 18px;
      }
      span{
@@ -297,11 +339,9 @@ export default {
      }
    }
    .activeTb{
-      border-color:#3e96fc;
-      box-shadow:0px 1px 16px #3d95fb inset;
-      padding-left: 12px;
-      img{
-        height: 78px;
+     box-shadow:none;
+      .mask{
+        display: block;
       }
    }
  }
@@ -310,14 +350,16 @@ export default {
 .gallery-top {
  width: 70%;
  max-width: 1344px;
- height: 490px;
+ height: 25.5208rem;
  margin: 0;
  box-shadow:0px 2px 10px #d2dfea;
  border-radius: 10px;
  .top_img {
+   width: 100%;
+   height: 100%;
   img {
    width: 100%;
-   height: 490px;
+   height: 100%;
    border-radius: 10px;
   }
  }
