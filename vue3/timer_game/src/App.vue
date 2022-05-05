@@ -1,6 +1,6 @@
 <template>
   <h1>测试反应时间</h1>
-  <button @click="start" :disabled="isPlay">开始</button>
+  <n-button type="primary" @click="start" :disabled="isPlay">开始</n-button>
   <Block v-if="isPlay" :delay="delay" @gameOver="showResult" />
   <Result :result="result" v-if="!isPlay && result"/>
 </template>
