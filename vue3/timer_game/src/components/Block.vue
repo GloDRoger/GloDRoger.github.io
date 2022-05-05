@@ -1,4 +1,7 @@
 <template>
+    <div class="spin" v-show="!showBox">
+        <n-spin :size="50"/>
+    </div>
     <div class="box" v-show="showBox" @click="stopTimer">
         click me
     </div>
@@ -35,6 +38,13 @@ import { onMounted, ref } from 'vue'
 </script>
 
 <style lang="scss" scoped>
+.spin{
+    width: 500px;
+    height: 400px;
+    margin: 50px auto 0;
+    text-align: center;
+    line-height: 400px;
+}
 .box{
     width: 500px;
     height: 400px;
