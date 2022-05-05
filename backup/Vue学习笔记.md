@@ -1227,7 +1227,21 @@
 
 ## <span id="脚手架vue-cli">脚手架Vue-cli</span>
 
+### 在Vue中使用sass
+
+安装：npm install --save-dev sass
+
+标签中：
+
+```vue
+<style lang="scss">
+</style>
+```
+
+
+
 ### 关于不同版本的Vue
+
 1. vue.js 与 vue.runtime.xxx.js的区别：
     - vue.js是完整版的Vue,包含：核心功能+模板解析器。
     - vue.runtime.xxx.js是运行版的Vue，只包含：核心功能；没有模板解析器。
@@ -3567,8 +3581,9 @@ export default {
 - 好处: 减少标签层级, 减小内存占用、
 2. Teleport
 - 什么是Teleport？—— `Teleport` 是一种能够将我们的<strong style="color:#DD5145">组件html结构</strong>移动到指定位置的技术。
+- to——移动的位置，用css选择器获取元素
 ```vue
-<teleport to="移动位置">
+<teleport to="#footer">
 <div v-if="isShow" class="mask">
     <div class="dialog">
         <h3>我是一个弹窗</h3>
@@ -3684,13 +3699,62 @@ Vue.directive('focus', {
   > 过滤器虽然这看起来很方便，但它需要一个自定义语法，打破大括号内表达式是 “只是 JavaScript” 的假设，这不仅有学习成本，而且有实现成本！建议用方法调用或计算属性去替换过滤器。
 - ......
 
+### 单文件组件`<script setup>`
 
+详情：https://v3.cn.vuejs.org/api/sfc-script-setup.html
+
+```vue
+<template>
+  <h1>测试反应时间</h1>
+  <button @click="start" :disabled="isPlay">开始</button>
+  <Block v-if="isPlay" :delay="delay" @gameOver="showResult" />
+  <Result :result="result" v-if="!isPlay && result"/>
+</template>
+
+<script setup>
+import { onMounted, ref } from 'vue'
+import Block from './components/Block.vue';
+import Result from './components/Result.vue';
+
+  const isPlay = ref(false)
+  const delay = ref(null)
+  const result = ref('')
+
+  function start(){
+    delay.value = 2000 + Math.random() * 5000
+    isPlay.value = true
+  }
+
+  function showResult(v){
+    isPlay.value = false
+    result.value = v
+    // console.log('gameOver',v)
+  }
+
+  onMounted(()=>{
+    // console.log('挂载了。',delay.value)
+  })
+
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
+
+```
 
 
 
 
 ************************************
-## 元素的尺寸
+# 元素的尺寸
 `clientWidth`和`clientHeight`
 元素的可见宽度和可见高度，不带单位，返回一个数字，可直接进行结算;包括内容区和`padding`，只读属性。
 `offsetWidth`和`offsetHeight`
