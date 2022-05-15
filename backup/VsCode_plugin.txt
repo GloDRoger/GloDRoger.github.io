@@ -1,0 +1,39 @@
+中文插件
+Chinese (Simplified) (简体中文) Language Pack for Visual Studio Code
+
+主题
+Community Material Theme
+
+图标主题
+Material Icon Theme
+
+快捷键
+Notepad++ keymap
+
+工具
+Highlight Matching Tag
+
+网页预览
+Live Server
+
+Svg预览
+Svg Preview
+
+Vue相关
+Vetur
+Vue Language Features (Volar)
+
+git相关
+Git History
+Git History Diff
+
+flutter相关
+Flutter
+Dart
+Awesome Flutter Snippets
+
+设置：
+Guides: Bracket Pairs
+控制是否启用括号对指南。
+Guides: Bracket Pairs Horizontal
+控制是否启用水平括号对指南。
