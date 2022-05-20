@@ -14,14 +14,21 @@ input{
 
 修改placeholder的样式
 ::-webkit-input-placeholder {
-        color: red;
-    }
-    ::-moz-placeholder {
-        color: red;
-    }
-    :-ms-input-placeholder {
-        color: red;
-    }
+   color: red;
+}
+::-moz-placeholder {
+   color: red;
+}
+:-ms-input-placeholder {
+   color: red;
+}
+
+隐藏scroll bar
+&::-webkit-scrollbar {
+   display: none;
+}
+-ms-overflow-style: none; /* IE 10+ */
+scrollbar-width: none; /* Firefox */
 
 css scrollbar样式设置
 ::-webkit-scrollbar    //滚动条整体部分
