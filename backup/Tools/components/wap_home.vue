@@ -19,9 +19,6 @@
           <div class="swiper-pagination"></div>
         </div>
       </div>
-      <!-- 滚动公告 -->
-      <roll />
-      <!-- 会员信息导航 -->
       <van-sticky offset-top="66" z-index="29">
         <div class="user_info" ref="userInfo">
           <div class="top">
@@ -79,7 +76,6 @@
           </div>
         </div>
       </van-sticky>
-      <!-- 游戏导航 -->
       <div class="game_box">
         <div class="left" ref="left">
           <div class="game_nav" v-for="(item, index) in nav" :key="index">
