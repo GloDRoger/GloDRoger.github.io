@@ -3756,9 +3756,12 @@ import Result from './components/Result.vue';
 
 ************************************
 # <span id="tools">工具收藏夹</span>
-#滚动时元素动画载入
+- 滚动时元素动画载入
 https://motion.vueuse.org/presets.html
 @vueuse/motion
+
+- 剪贴板插件
+https://www.npmjs.com/package/vue-clipboard2
 
 
 
